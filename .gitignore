@@ -1,0 +1,43 @@
+# ==================== Secrets and local config ====================
+# No .env variant is ever committed; the repo only carries .env.example files.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ==================== Python ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==================== Frontend ====================
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ==================== Runtime data ====================
+# Default location is ~/.uninotebook/, but --data-dir may point inside the repo.
+data/
+backend/data/
+backend/chroma_db/
+*.db
+*.db-shm
+*.db-wal
+
+# ==================== Logs ====================
+*.log
+*.out
+backend/logs/
+
+# ==================== Editors / OS ====================
+.DS_Store
+.vscode/
+.idea/
+.cursor/

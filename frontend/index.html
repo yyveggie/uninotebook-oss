@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title>UniNotebook</title>
+  <meta name="description" content="本地运行的 AI 文档学习工作台：RAG 问答、思维导图、闪卡、测验、知识图谱。" />
+
+  <!-- 视口和兼容性 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Favicon 图标 -->
+  <link rel="icon" type="image/svg+xml" href="/uninotebook-logo.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!--
+    本地版跑在 127.0.0.1，因此刻意移除了这些内容：
+
+    - Open Graph / canonical / robots 等 SEO 与社交分享标签
+      它们指向托管站点的域名，在本地部署里既无意义又会误导；
+    - 对外部域名的 dns-prefetch / preconnect
+      本地运行不该悄悄向第三方域名发起连接。
+  -->
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+/**
+ * Skeleton 骨架屏样式
+ * 使用 shimmer 动画效果，提供流畅的加载体验
+ * 
+ * 统一设计规范：
+ * - 主文本高度: 14px
+ * - 次要文本高度: 12px
+ * - 圆角: 4px
+ * - 间距: 8px
+ * - 内边距: 12px
+ */
+
+/* ===== 基础骨架样式 ===== */
+.skeleton {
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.06) 25%,
+      rgba(0, 0, 0, 0.10) 50%,
+      rgba(0, 0, 0, 0.06) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  border-radius: 4px;
+}
+
+.skeleton-circular {
+  border-radius: 50%;
+}
+
+.skeleton-rectangular {
+  border-radius: 4px;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== 列表项骨架 (统一样式) ===== */
+.skeleton-list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.skeleton-list-item:last-child {
+  border-bottom: none;
+}
+
+.skeleton-list-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== 会话列表骨架 (左栏历史对话) ===== */
+.skeleton-session-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 4px;
+}
+
+/* ===== 关键词骨架 ===== */
+.skeleton-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.skeleton-keyword-chip {
+  border-radius: 14px;
+}
+
+/* ===== 聊天消息骨架 (中间对话区域) ===== */
+.skeleton-chat-message {
+  padding: 12px 0;
+  display: flex;
+}
+
+.skeleton-chat-message.ai {
+  justify-content: flex-start;
+}
+
+.skeleton-chat-message.user {
+  justify-content: flex-end;
+}
+
+.skeleton-chat-bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+}
+
+.skeleton-chat-bubble .skeleton {
+  height: 14px;
+  margin-bottom: 8px;
+}
+
+.skeleton-chat-bubble .skeleton:last-child {
+  margin-bottom: 0;
+}
+
+.skeleton-chat-message.user .skeleton-chat-bubble {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* ===== 笔记列表骨架 (右栏我的记录) ===== */
+.skeleton-notes-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+
+/* ===== 段落批注骨架 ===== */
+.skeleton-annotation {
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* 🔧 增加行间距，模拟文档段落 */
+}
+
+.skeleton-annotation .skeleton {
+  opacity: 0.8;
+  /* 稍微淡一些，更自然 */
+}
+
+/* ===== 深色模式适配 ===== */
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.06) 25%,
+        rgba(255, 255, 255, 0.10) 50%,
+        rgba(255, 255, 255, 0.06) 75%);
+    background-size: 200% 100%;
+  }
+
+  .skeleton-chat-bubble {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .skeleton-chat-message.user .skeleton-chat-bubble {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .skeleton-note-item {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .skeleton-list-item {
+    border-bottom-color: rgba(255, 255, 255, 0.04);
+  }
+}

@@ -1,0 +1,251 @@
+.pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-secondary, #f5f5f5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ==================== Toolbar ==================== */
+
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: var(--bg-primary, #fff);
+  border-bottom: 1px solid var(--border-color, #e5e5e5);
+  flex-shrink: 0;
+  gap: 8px;
+  min-height: 36px;
+}
+
+.pdf-toolbar-left,
+.pdf-toolbar-center {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pdf-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border-color, #d9d9d9);
+  border-radius: 6px;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #333);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+
+.pdf-toolbar button:hover:not(:disabled) {
+  background: var(--bg-hover, #f0f0f0);
+  border-color: var(--border-active, #b3b3b3);
+}
+
+.pdf-toolbar button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pdf-toolbar button.active {
+  background: var(--accent-bg, #e8f0fe);
+  border-color: var(--accent-color, #4285f4);
+  color: var(--accent-color, #4285f4);
+}
+
+.pdf-scale-label {
+  font-size: 12px;
+  color: var(--text-secondary, #666);
+  min-width: 36px;
+  text-align: center;
+  user-select: none;
+}
+
+.pdf-page-jump {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pdf-page-input {
+  width: 36px;
+  height: 24px;
+  border: 1px solid var(--border-color, #d9d9d9);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 12px;
+  outline: none;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #333);
+}
+
+.pdf-page-input:focus {
+  border-color: var(--accent-color, #4285f4);
+}
+
+.pdf-page-total {
+  font-size: 12px;
+  color: var(--text-secondary, #666);
+  user-select: none;
+}
+
+/* ==================== Content ==================== */
+
+.pdf-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdf-page-wrapper {
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+}
+
+.pdf-page-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary, #aaa);
+  font-size: 13px;
+  background: var(--bg-secondary, #fafafa);
+  min-width: 200px;
+}
+
+/* Text layer — make selectable text visible on hover */
+.pdf-page-wrapper .react-pdf__Page__textContent {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+.pdf-page-wrapper .react-pdf__Page__textContent span::selection {
+  background: rgba(66, 133, 244, 0.28);
+}
+
+/* ==================== States ==================== */
+
+.pdf-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: var(--text-secondary, #666);
+  font-size: 14px;
+}
+
+.pdf-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  gap: 8px;
+  color: var(--text-secondary, #666);
+}
+
+.pdf-error-detail {
+  font-size: 12px;
+  color: var(--text-tertiary, #999);
+  max-width: 260px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.pdf-error button {
+  margin-top: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--accent-color, #4285f4);
+  border-radius: 6px;
+  background: var(--accent-color, #4285f4);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pdf-viewer-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-tertiary, #aaa);
+  gap: 8px;
+}
+
+.pdf-empty-icon {
+  font-size: 36px;
+  opacity: 0.5;
+}
+
+.pdf-viewer-empty p {
+  font-size: 13px;
+}
+
+/* ==================== Selection Popover ==================== */
+
+.pdf-selection-popover {
+  position: fixed;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #d9d9d9);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  animation: pdf-popover-in 0.12s ease-out;
+}
+
+@keyframes pdf-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pdf-selection-popover button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary, #333);
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.pdf-selection-popover button:hover {
+  background: var(--bg-hover, #f0f0f0);
+}
+
+.pdf-selection-popover button.primary {
+  background: var(--accent-color, #4285f4);
+  color: #fff;
+}
+
+.pdf-selection-popover button.primary:hover {
+  background: var(--accent-hover, #3367d6);
+}

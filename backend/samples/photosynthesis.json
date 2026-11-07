@@ -1,0 +1,68 @@
+{
+  "title": "光合作用：植物如何把阳光变成能量",
+  "overview": "这是一篇介绍光合作用基本原理的科普文章。文章从总反应式出发，说明二氧化碳和水在光能驱动下生成葡萄糖并释放氧气，且氧气来自水。随后介绍叶绿体、类囊体和叶绿素的结构与功能，再分两步讲解光反应如何产生 ATP 和 NADPH，以及卡尔文循环如何借助 Rubisco 固定二氧化碳、合成糖类。文章还比较了 C3、C4 和 CAM 植物应对光呼吸和干旱的策略，最后说明光合作用对氧气供应、食物链和碳循环的意义，并提到人工光合作用的研究。",
+  "key_terms": [
+    {"term": "Photosynthesis / 光合作用", "description": "植物、藻类和蓝细菌利用光能把二氧化碳和水转化为糖并释放氧气的过程。"},
+    {"term": "Chloroplast / 叶绿体", "description": "植物细胞中进行光合作用的细胞器，内含类囊体和基质。"},
+    {"term": "Thylakoid / 类囊体", "description": "叶绿体内扁平的囊状膜结构，光反应在其膜上进行。"},
+    {"term": "Chlorophyll / 叶绿素", "description": "主要吸收红光和蓝紫光的色素，反射绿光，使叶子呈绿色。"},
+    {"term": "Light-Dependent Reactions / 光反应", "description": "在类囊体膜上分解水、释放氧气并生成 ATP 和 NADPH 的阶段。"},
+    {"term": "ATP / Adenosine Triphosphate / 三磷酸腺苷", "description": "细胞中的“能量货币”，光反应中合成，供卡尔文循环使用。"},
+    {"term": "NADPH / 还原型辅酶Ⅱ", "description": "光反应产生的还原剂，在卡尔文循环中用于把固定的碳还原成糖。"},
+    {"term": "Calvin Cycle / 卡尔文循环", "description": "在叶绿体基质中固定二氧化碳、合成三碳糖的反应循环。"},
+    {"term": "Rubisco / 核酮糖二磷酸羧化酶", "description": "把二氧化碳固定到五碳糖上的关键酶，常被认为是地球上含量最多的蛋白质。"},
+    {"term": "Photorespiration / 光呼吸", "description": "Rubisco 错误结合氧气、造成能量浪费的过程，在炎热干燥时更明显。"},
+    {"term": "C4 Plants / C4 植物", "description": "先浓缩二氧化碳再进行卡尔文循环、从而减少光呼吸的植物，如玉米。"},
+    {"term": "CAM Plants / 景天酸代谢植物", "description": "夜间吸收并储存二氧化碳、白天关闭气孔进行光合作用的节水植物，如仙人掌。"},
+    {"term": "Carbon Cycle / 碳循环", "description": "碳在大气、生物和海洋之间循环的过程，光合作用是其中的关键环节。"}
+  ],
+  "mindmap": {
+    "title": "光合作用",
+    "root": {
+      "id": "root",
+      "title": "光合作用",
+      "children": [
+        {"id": "n1", "title": "总反应", "children": [
+          {"id": "n1-1", "title": "二氧化碳 + 水 → 葡萄糖 + 氧气"},
+          {"id": "n1-2", "title": "氧气来自水"}
+        ]},
+        {"id": "n2", "title": "场所", "children": [
+          {"id": "n2-1", "title": "叶绿体"},
+          {"id": "n2-2", "title": "类囊体与基质"},
+          {"id": "n2-3", "title": "叶绿素反射绿光"}
+        ]},
+        {"id": "n3", "title": "光反应", "children": [
+          {"id": "n3-1", "title": "分解水、释放氧气"},
+          {"id": "n3-2", "title": "生成 ATP 和 NADPH"}
+        ]},
+        {"id": "n4", "title": "卡尔文循环", "children": [
+          {"id": "n4-1", "title": "Rubisco 固定二氧化碳"},
+          {"id": "n4-2", "title": "合成三碳糖与葡萄糖"}
+        ]},
+        {"id": "n5", "title": "环境适应", "children": [
+          {"id": "n5-1", "title": "C3 植物与光呼吸"},
+          {"id": "n5-2", "title": "C4 植物浓缩二氧化碳"},
+          {"id": "n5-3", "title": "CAM 植物夜间吸收二氧化碳"}
+        ]},
+        {"id": "n6", "title": "意义", "children": [
+          {"id": "n6-1", "title": "提供氧气与食物链能量"},
+          {"id": "n6-2", "title": "碳循环的关键环节"}
+        ]}
+      ]
+    }
+  },
+  "flashcards": [
+    {"question": "光合作用释放的氧气来自哪里？", "answer": "来自水，而不是二氧化碳。光反应中水分子被分解，释放出氧气、氢离子和电子，这一点已由同位素标记实验证实。"},
+    {"question": "叶子为什么看起来是绿色的？", "answer": "叶绿素主要吸收红光和蓝紫光，对绿光吸收很少，绿光被反射出来，所以叶子呈绿色。"},
+    {"question": "光反应的主要产物有哪些？", "answer": "光反应在类囊体膜上进行，产物包括氧气，以及储存能量的 ATP 和 NADPH，它们供卡尔文循环使用。"},
+    {"question": "卡尔文循环为什么常被称为暗反应？它需要黑暗吗？", "answer": "因为它不直接依赖光；但它并不需要黑暗，而是利用光反应产生的 ATP 和 NADPH，在基质中固定二氧化碳、合成糖。"},
+    {"question": "什么是光呼吸？", "answer": "炎热干燥时气孔关闭、叶片内二氧化碳浓度下降，Rubisco 会错误地结合氧气，造成能量浪费，这一过程叫光呼吸。"},
+    {"question": "C4 植物和 CAM 植物分别如何应对光呼吸或干旱？", "answer": "C4 植物先在叶肉细胞中浓缩二氧化碳再进行卡尔文循环；CAM 植物夜间吸收并储存二氧化碳，白天关闭气孔进行光合作用。"}
+  ],
+  "quiz": [
+    {"question": "光合作用的光反应在叶绿体的哪个部位进行？", "options": ["基质", "类囊体膜", "细胞核", "线粒体"], "correct_answer": 1, "explanation": "光反应在类囊体膜上进行；卡尔文循环则在基质中进行。"},
+    {"question": "卡尔文循环中固定二氧化碳的关键酶是什么？", "options": ["淀粉酶", "Rubisco", "叶绿素", "ATP 合成酶"], "correct_answer": 1, "explanation": "Rubisco 把二氧化碳固定到五碳糖上，是卡尔文循环的关键酶。"},
+    {"question": "下列哪种植物属于 CAM 植物？", "options": ["水稻", "小麦", "玉米", "仙人掌"], "correct_answer": 3, "explanation": "仙人掌、菠萝等在夜间吸收二氧化碳，属于 CAM 植物；玉米是 C4 植物，水稻和小麦是 C3 植物。"},
+    {"question": "光反应为卡尔文循环提供了什么？", "options": ["二氧化碳和水", "ATP 和 NADPH", "葡萄糖和淀粉", "氧气和叶绿素"], "correct_answer": 1, "explanation": "光反应把光能储存在 ATP 和 NADPH 中，卡尔文循环用它们把固定的碳还原成糖。"}
+  ]
+}

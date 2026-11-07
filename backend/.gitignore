@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 环境变量
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志
+*.log
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+chroma_db/
+
+# macOS
+.DS_Store
+
+# PPT 生成临时文件
+data/ppt_output/
+data/ppt_uploads/
+data/ppt_downloads/
+data/tmp_downloads/
+data/poster_output/
+data/poster_uploads/

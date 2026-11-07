@@ -1,0 +1,180 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uninotebook"
+version = "0.1.0"
+description = "A local-first AI study workbench: grounded Q&A, mind maps, flashcards, quizzes, knowledge graphs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+# ============================================================
+# Core dependencies: no external services
+# SQLite + embedded ChromaDB + in-process background tasks — install, then `python run.py`
+# ============================================================
+dependencies = [
+  # Web framework
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "pydantic>=2.9",
+  "pydantic-settings>=2.6",
+  "python-multipart>=0.0.17",
+
+  # Database (SQLite, no external service)
+  "sqlalchemy>=2.0.43",
+  "aiosqlite>=0.20",
+  "greenlet>=3.0",
+
+  # Auth modules (no login here, but the module is still imported)
+  "python-jose>=3.5",
+  "passlib>=1.7.4",
+  "bcrypt>=3.2",
+  "email-validator>=2.2",
+
+  # Background tasks
+  # Celery is still required (task definitions use its decorators), but tasks run in an
+  # in-process thread pool via runtime/tasks.py and never connect to a broker.
+  "celery>=5.3",
+
+  # AI / RAG
+  "openai>=1.54",
+  "langchain>=1.0",
+  "langchain-core>=1.0",
+  "langchain-openai>=0.3",
+  "langgraph>=1.0",
+  "chromadb>=1.0",
+  "rank-bm25>=0.2.2",
+  "jieba>=0.42.1",
+
+  # Basic document parsing
+  "pypdf>=5.0",
+  "trafilatura>=1.6",
+  "pillow>=10.0",
+
+  # Misc
+  "aiohttp>=3.10",
+  "aiofiles>=23.2",
+  "redis>=5.2",
+  "python-dotenv>=1.0",
+  "numpy>=1.26",
+  "networkx>=3.0",
+]
+
+[project.optional-dependencies]
+
+# ------------------------------------------------------------
+# Faster PDF text extraction
+#
+# ⚠️ License note: PyMuPDF is dual-licensed under AGPL-3.0 / commercial. If you use this
+# project in a closed-source commercial service, the AGPL network clause may apply and you
+# would need a commercial license from Artifex. That's why it isn't a core dependency —
+# parsing defaults to pypdf (BSD) and switches to PyMuPDF automatically once installed.
+# Personal local use is unaffected.
+pymupdf = ["pymupdf>=1.24"]
+
+# ------------------------------------------------------------
+# Advanced parsing: table extraction, layout analysis, formula OCR
+# Large (pulls in torch) and needs poppler on the system:
+#   macOS: brew install poppler
+#   Debian/Ubuntu: apt install poppler-utils
+parsing = [
+  "unstructured[all-docs]>=0.15",
+  "camelot-py[cv]>=0.11",
+]
+
+# ------------------------------------------------------------
+# Paper to slides
+ppt = [
+  "lightrag-hku>=1.4",
+  "huggingface_hub>=0.24",
+  "reportlab>=4.0",
+  "unstructured[all-docs]>=0.15",
+  "dashscope>=1.14",
+]
+
+poster = ["dashscope>=1.14", "unstructured[all-docs]>=0.15", "reportlab>=4.0"]
+
+# ------------------------------------------------------------
+# Audio overviews (needs a DashScope TTS key + ffmpeg)
+podcast = [
+  "dashscope>=1.14",
+  "pydub>=0.25",
+]
+
+research = ["dashscope>=1.14"]
+
+# ------------------------------------------------------------
+# Everything optional
+all = [
+  "uninotebook[pymupdf,parsing,ppt,poster,podcast,research]",
+]
+
+# ------------------------------------------------------------
+# Dev tooling
+dev = [
+  "ruff>=0.6",
+  "black>=24.0",
+  "mypy>=1.11",
+  "pytest>=8.0",
+  "pytest-asyncio>=0.24",
+]
+
+[tool.setuptools]
+# Distributed as an application rather than a library: clone it and run `python run.py`
+packages = []
+
+
+# ============================================================
+# Style and static analysis
+# ============================================================
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+include = "\\.pyi?$"
+extend-exclude = """
+/(
+  backend/chroma_db
+  | backend/__pycache__
+)/
+"""
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [
+  "backend/chroma_db",
+  "backend/__pycache__",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+  "auth",
+  "config",
+  "database",
+  "db_models",
+  "document_service",
+  "cache_service",
+  "llm_service",
+  "routes",
+  "runtime",
+  "utils",
+]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["backend"]
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+pretty = true
+exclude = [
+  "backend/chroma_db/",
+]

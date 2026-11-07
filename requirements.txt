@@ -1,0 +1,86 @@
+# UniNotebook dependencies
+#
+# No external services required: SQLite + embedded ChromaDB + in-process background tasks.
+#
+#     pip install -r requirements.txt
+#     python run.py
+#
+# Lower bounds reflect the versions this was actually tested against. They're `>=` rather than
+# `==` because exact pins tend to collide with whatever else is in your environment; if you
+# need a fully reproducible install, generate a lock file with `pip freeze`.
+#
+# Heavier features (paper-to-slides, posters, audio overviews) need extra packages and API
+# keys and are not installed by default. Missing them doesn't break anything — the UI just
+# greys out those entry points. See the bottom of this file to add them.
+
+# ---------- Web framework ----------
+fastapi>=0.115
+uvicorn[standard]>=0.32
+pydantic>=2.9
+pydantic-settings>=2.6
+python-multipart>=0.0.17
+
+# ---------- Database (SQLite, no external service) ----------
+sqlalchemy>=2.0.43
+aiosqlite>=0.20
+greenlet>=3.0
+
+# ---------- Auth modules ----------
+# There's no login here, but the auth module is still imported, so these are still needed.
+python-jose>=3.5
+passlib>=1.7.4
+bcrypt>=3.2
+email-validator>=2.2
+
+# ---------- Background tasks ----------
+# Celery itself is still required: task definitions use its decorators. But tasks run in an
+# in-process thread pool (see runtime/tasks.py) and never connect to a broker.
+celery>=5.3
+
+# ---------- AI / RAG ----------
+openai>=1.54
+langchain>=1.0
+langchain-core>=1.0
+langchain-openai>=0.3
+langgraph>=1.0
+chromadb>=1.0
+rank-bm25>=0.2.2
+jieba>=0.42.1
+
+# ---------- Document parsing (basic) ----------
+# pypdf (BSD) rather than PyMuPDF: the latter is dual-licensed AGPL-3.0 / commercial, which
+# requires a paid license for closed-source commercial use.
+# Installing PyMuPDF switches to it automatically (faster, better layout fidelity) —
+# see parsers/pdf_text.py.
+pypdf>=5.0
+trafilatura>=1.6
+Pillow>=10.0
+
+# ---------- Misc ----------
+aiohttp>=3.10
+aiofiles>=23.2
+redis>=5.2
+python-dotenv>=1.0
+numpy>=1.26
+networkx>=3.0
+
+
+# ==================== Optional extras ====================
+#
+# Faster PDF parsing (note the AGPL license — a commercial license is needed for
+# closed-source commercial use):
+#     pip install pymupdf
+#
+# Advanced parsing (table extraction, formula OCR):
+#     pip install "unstructured[all-docs]" "camelot-py[cv]"
+#     Also needs poppler: brew install poppler / apt install poppler-utils
+#
+# Paper to slides:
+#     pip install lightrag-hku huggingface_hub reportlab dashscope "unstructured[all-docs]"
+#
+# Audio overviews (needs a DashScope TTS key):
+#     pip install dashscope pydub
+#     Also needs ffmpeg: brew install ffmpeg / apt install ffmpeg
+#
+# Academic posters (also require chat + image-generation API keys):
+#     pip install dashscope reportlab "unstructured[all-docs]"

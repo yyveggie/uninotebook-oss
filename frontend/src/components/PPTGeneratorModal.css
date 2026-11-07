@@ -1,0 +1,378 @@
+.ppt-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  /* Lighter backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2147483647;
+  backdrop-filter: blur(8px);
+}
+
+.ppt-modal-content {
+  background: white;
+  /* width props removed for AnimatedModal size unification */
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.modal-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.modal-header p {
+  color: #888;
+  font-size: 13px;
+  margin: 0;
+}
+
+.drop-zone {
+  border: 1.5px dashed #e0e0e0;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fafafa;
+}
+
+.drop-zone:hover {
+  border-color: #00c896;
+  /* Cyan Green */
+  background: #f0fdf9;
+}
+
+.drop-zone.has-file {
+  border-style: solid;
+  padding: 24px;
+  background: #f0fdf9;
+  border-color: #00c896;
+}
+
+.drop-zone .placeholder .icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+  opacity: 0.8;
+}
+
+.drop-zone .placeholder p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.file-info .icon {
+  font-size: 20px;
+}
+
+.file-info .name {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.file-info button {
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.file-info button:hover {
+  border-color: #00c896;
+  color: #00c896;
+}
+
+.options {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.style-section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  display: block;
+}
+
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.style-card {
+  border: 1px solid #f0f0f0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.style-card:hover {
+  border-color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.style-card.active {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.style-name {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+  transition: color 0.2s;
+}
+
+.style-card.active .style-name {
+  color: #fff !important;
+  /* Force white text on active black card */
+}
+
+.style-card.active .style-desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.style-desc {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.4;
+}
+
+.generate-btn {
+  width: 100%;
+  margin-top: 32px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #1a1a1a;
+  /* Black button */
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.generate-btn:disabled {
+  background: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: #333;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Add specialized cyan effect on hover for fun? Or keep it minimal black */
+
+/* Processing Step */
+.step-processing {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f0f0f0;
+  border-top-color: #00c896;
+  /* Cyan Green */
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 24px 0 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #00c896;
+  /* Cyan Green */
+  transition: width 0.3s ease-out;
+}
+
+.status-text {
+  font-size: 13px;
+  color: #888;
+}
+
+/* Result Step */
+.step-result {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.download-btn {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+
+.download-btn:hover {
+  background: #333;
+}
+
+.secondary-btn {
+  color: #666;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+
+.secondary-btn:hover {
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+.error-msg {
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Studio Action Card Style override for PPT */
+.ppt-action {
+  background: linear-gradient(135deg, #f0fdf9 0%, #e6fffa 100%);
+  /* Minimal Mint/Cyan tint */
+  border-color: #ccfbf1;
+}
+
+.ppt-action:hover,
+.ppt-action:focus {
+  border-color: #00c896;
+  box-shadow: 0 4px 12px rgba(0, 200, 150, 0.15);
+  /* Cyan Green Glow */
+}
+
+/* Previously we set background: transparent for the icon.
+   Let's keep text color as Cyan-Green */
+.ppt-action .action-icon {
+  background: transparent;
+  color: #00c896;
+}
+
+/* PPT action text now uses default card styling */
+
+.ppt-action .action-text p {
+  color: #555;
+}
+
+.ppt-action.generating {
+  border-color: #00c896;
+  background: linear-gradient(135deg, #e6fffa 0%, #d1fae5 100%);
+  cursor: default;
+}
+
+.ppt-action.generating:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.ppt-action.generating .action-icon {
+  animation: spin 3s linear infinite;
+}

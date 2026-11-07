@@ -1,0 +1,95 @@
+.capability-gate {
+  position: relative;
+  display: inline-flex;
+}
+
+/* 置灰被拦截的入口。用 :where 降低优先级，避免覆盖子元素自身的布局样式 */
+.capability-gate > :where(button, a, div) {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+.capability-gate__tip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: max-content;
+  max-width: 280px;
+  padding: 10px 14px;
+
+  background: #134134;
+  color: #f2f8f5;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px -8px rgba(19, 65, 52, 0.45);
+
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+  white-space: normal;
+  pointer-events: none;
+  animation: capability-gate-in 0.16s ease-out;
+}
+
+/* 小三角 */
+.capability-gate__tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #134134;
+}
+
+.capability-gate__tip-text {
+  font-weight: 500;
+}
+
+.capability-gate__tip-code {
+  display: block;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #cfe9dd;
+  word-break: break-all;
+}
+
+.capability-gate__tip-action {
+  color: #8fd6b8;
+  font-size: 12px;
+}
+
+@keyframes capability-gate-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 视口顶部空间不足时，提示改为向下展开 */
+@media (max-height: 480px) {
+  .capability-gate__tip {
+    bottom: auto;
+    top: calc(100% + 10px);
+  }
+  .capability-gate__tip::after {
+    top: auto;
+    bottom: 100%;
+    border-top-color: transparent;
+    border-bottom-color: #134134;
+  }
+}

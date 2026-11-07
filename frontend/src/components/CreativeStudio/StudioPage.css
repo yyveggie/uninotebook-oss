@@ -1,0 +1,717 @@
+.studio-page {
+    display: flex;
+    height: calc(100vh - 80px);
+    width: 100vw;
+    margin-top: 80px;
+    background-color: #ffffff;
+    color: #1f2937;
+    overflow: hidden;
+}
+
+.studio-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+
+.studio-sidebar-header {
+    padding: 14px 14px 12px;
+}
+
+.studio-sidebar-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.studio-action-btn {
+    flex: 1;
+    padding: 6px 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #6b7280;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.studio-action-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #374151;
+}
+
+.studio-action-btn.primary {
+    flex: 0 0 88px;
+    background: #0f766e;
+    color: white;
+    white-space: nowrap;
+}
+
+.studio-action-btn.primary:hover {
+    background: #0d6660;
+}
+
+.studio-doc-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 8px;
+}
+
+.studio-doc-list-empty {
+    padding: 32px 16px;
+    text-align: center;
+    font-size: 13px;
+    color: #c4c9cf;
+}
+
+.studio-doc-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #6b7280;
+    margin: 1px 0;
+    transition: all 0.1s;
+}
+
+.studio-doc-item:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: #374151;
+}
+
+.studio-doc-item.active {
+    background-color: #f0fdf4;
+    color: #0f766e;
+    font-weight: 500;
+}
+
+.doc-item-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.doc-item-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #c4c9cf;
+    font-size: 15px;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.1s;
+}
+
+.studio-doc-item:hover .doc-item-close {
+    opacity: 1;
+}
+
+.doc-item-close:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #6b7280;
+}
+
+/* 侧栏：该文件有未保存 / 保存失败的修改 */
+.doc-item-save-dot {
+    width: 6px;
+    height: 6px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background: #d1d5db;
+    flex-shrink: 0;
+}
+
+.doc-item-save-dot.error {
+    background: #dc2626;
+}
+
+.studio-main {
+    flex: 1;
+    min-width: 0;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.studio-workspace {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.editor-container {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 编辑器顶部：文件名（点击重命名）、保存状态、下载 */
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 8px 16px;
+    border-bottom: 1px solid #f3f4f6;
+    flex-shrink: 0;
+}
+
+.editor-filename {
+    min-width: 0;
+    max-width: 60%;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: text;
+}
+
+.editor-filename:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.editor-filename-input {
+    width: min(360px, 60%);
+    padding: 4px 6px;
+    border: 1px solid #0f766e;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1f2937;
+    outline: none;
+}
+
+.editor-save-status {
+    font-size: 12px;
+    color: #9ca3af;
+    white-space: nowrap;
+}
+
+.editor-save-status.error {
+    color: #dc2626;
+}
+
+.editor-save-retry {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 12px;
+    color: #0f766e;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.editor-toolbar-spacer {
+    flex: 1;
+}
+
+.editor-toolbar-btn {
+    padding: 4px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background: white;
+    font-size: 12px;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.editor-toolbar-btn:hover:not(:disabled) {
+    border-color: #0f766e;
+    color: #0f766e;
+}
+
+.editor-toolbar-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* 编辑器本体：采纳/放弃按钮、Cmd+K 指令框按编辑器坐标定位在这里面 */
+.editor-body {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+}
+
+/* 空状态 */
+.studio-empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.empty-state-content {
+    text-align: center;
+    max-width: 420px;
+}
+
+.empty-state-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.empty-state-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 6px;
+}
+
+.empty-state-content p {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+
+.empty-state-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.empty-action-btn {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f4f6;
+    color: #374151;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.empty-action-btn:hover {
+    background: #e5e7eb;
+}
+
+.empty-action-btn.primary {
+    background: #0f766e;
+    color: white;
+}
+
+.empty-action-btn.primary:hover {
+    background: #0d6660;
+}
+
+.empty-state-formats {
+    font-size: 12px;
+    color: #c4c9cf;
+}
+
+/* AI Prompt Widget (Cmd+K) */
+.ai-prompt-widget {
+    position: absolute;
+    z-index: 100;
+    width: 420px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    padding: 10px;
+}
+
+.ai-prompt-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-prompt-input {
+    flex: 1;
+    background: #f8f9fa;
+    border: none;
+    color: #1f2937;
+    padding: 10px 14px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+}
+
+.ai-prompt-input:focus {
+    background: #f0fdf4;
+}
+
+.ai-prompt-input:disabled {
+    opacity: 0.6;
+}
+
+.ai-prompt-submit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+}
+
+.ai-prompt-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* AI 内联 diff 样式 */
+.ai-edit-original {
+    background-color: rgba(239, 68, 68, 0.08);
+}
+
+.ai-edit-original-inline {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.ai-edit-new {
+    background-color: rgba(34, 197, 94, 0.1);
+}
+
+.ai-edit-inline-actions {
+    position: absolute;
+    z-index: 50;
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ai-edit-btn {
+    padding: 5px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.15s;
+}
+
+.ai-edit-btn.accept {
+    background-color: #111111;
+    color: white;
+}
+
+.ai-edit-btn.accept:hover {
+    background-color: #000000;
+}
+
+.ai-edit-btn.reject {
+    background-color: transparent;
+    color: #6b7280;
+}
+
+.ai-edit-btn.reject:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: #374151;
+}
+
+/* AI 编辑指令面板 */
+.studio-edit-panel {
+    position: relative;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.panel-resize-handle {
+    width: 6px;
+    flex-shrink: 0;
+    cursor: col-resize;
+    background: transparent;
+    transition: background 0.15s;
+}
+
+.panel-resize-handle:hover {
+    background: rgba(15, 118, 110, 0.15);
+}
+
+.edit-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+.edit-panel-hint {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.edit-panel-running-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    background: #f0fdf4;
+    color: #0f766e;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.edit-panel-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(15, 118, 110, 0.2);
+    border-top-color: #0f766e;
+    border-radius: 999px;
+    animation: studio-spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.edit-panel-spinner.small {
+    width: 15px;
+    height: 15px;
+}
+
+.edit-panel-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.edit-panel-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 10px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    color: #4b5563;
+    transition: all 0.15s;
+}
+
+.edit-panel-action-btn:hover:not(:disabled) {
+    background: #f0fdf4;
+    color: #0f766e;
+}
+
+.edit-panel-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.edit-panel-action-btn.running,
+.edit-panel-action-btn.running:disabled {
+    opacity: 1;
+    background: #f0fdf4;
+    color: #0f766e;
+}
+
+.edit-panel-action-btn .action-icon {
+    font-size: 15px;
+}
+
+.edit-panel-action-btn .action-label {
+    font-size: 13px;
+}
+
+.edit-panel-chat-input {
+    padding: 12px 16px;
+}
+
+.edit-chat-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: white;
+    border-radius: 22px;
+    padding: 6px 6px 6px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.15s;
+}
+
+.edit-chat-box:focus-within {
+    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.1);
+}
+
+.edit-chat-textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    resize: none;
+    outline: none;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1f2937;
+    min-height: 22px;
+    max-height: 120px;
+    font-family: inherit;
+}
+
+.edit-chat-textarea::placeholder {
+    color: #c4c9cf;
+}
+
+.edit-chat-textarea:disabled {
+    opacity: 0.5;
+}
+
+.edit-chat-send {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s;
+}
+
+.edit-chat-send:hover:not(:disabled) {
+    background: #0f766e;
+}
+
+.edit-chat-send:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.edit-chat-send svg {
+    width: 15px;
+    height: 15px;
+}
+
+@keyframes studio-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 导入已有文档弹窗 */
+.import-picker-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.import-picker {
+    width: 460px;
+    max-height: 480px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.import-picker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+}
+
+.import-picker-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.import-picker-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #c4c9cf;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.1s;
+}
+
+.import-picker-close:hover {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.import-picker-search {
+    margin: 0 16px 8px;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    color: #374151;
+    background: #f3f4f6;
+}
+
+.import-picker-search:focus {
+    background: #f0fdf4;
+}
+
+.import-picker-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 8px 12px;
+}
+
+.import-picker-loading {
+    padding: 32px 20px;
+    text-align: center;
+    color: #c4c9cf;
+    font-size: 13px;
+}
+
+.import-picker-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    margin: 1px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.import-picker-item:hover {
+    background: #f0fdf4;
+}
+
+.import-picker-item-name {
+    flex: 1;
+    font-size: 13px;
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.import-picker-item-type {
+    font-size: 11px;
+    color: #c4c9cf;
+    margin-left: 12px;
+    flex-shrink: 0;
+}

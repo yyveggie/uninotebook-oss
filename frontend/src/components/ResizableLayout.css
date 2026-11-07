@@ -1,0 +1,230 @@
+/* 可调整大小的布局容器 */
+.resizable-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 当有面板最大化时，保持overflow hidden */
+.resizable-layout.has-maximized {
+  overflow: hidden;
+}
+
+.resizable-layout.dragging {
+  cursor: col-resize;
+  user-select: none;
+}
+
+/* 面板 */
+.resizable-panel {
+  height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.resizable-panel.left-panel {
+  border-right: 1px solid #e0e0e0;
+}
+
+.resizable-panel.center-panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.resizable-panel.right-panel {
+  border-left: 1px solid #e0e0e0;
+}
+
+/* 最大化/最小化按钮 */
+.panel-maximize-btn {
+  position: absolute;
+  top: 24px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999999 !important;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+  pointer-events: auto !important;
+  border: 1px solid #e0e0e0;
+  /* 细边框 */
+}
+
+.panel-maximize-btn:hover {
+  background: #f5f5f5;
+  color: #1a1a1a;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border-color: #1a1a1a;
+}
+
+.panel-maximize-btn:active {
+  transform: scale(0.95);
+}
+
+/* 嵌入式最大化按钮 (在标题栏内) */
+.panel-embedded-maximize-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+  margin-left: auto;
+  /* Push to right */
+  flex-shrink: 0;
+}
+
+.panel-embedded-maximize-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
+  /* Removed transform: scale(1.1) */
+}
+
+.panel-embedded-maximize-btn:active {
+  transform: scale(0.95);
+}
+
+/* 最小化状态的面板 */
+.resizable-panel.minimized {
+  display: none !important;
+  /* 完全隐藏最小化的面板，包括按钮 */
+}
+
+/* 最大化状态的面板 */
+.resizable-panel.maximized {
+  width: 100% !important;
+  overflow: hidden !important;
+  /* 确保overflow生效 */
+}
+
+.resizable-panel.maximized .panel-maximize-btn {
+  position: absolute !important;
+  /* 相对于面板定位 */
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 99999 !important;
+}
+
+.resizable-panel.maximized .panel-maximize-btn:hover {
+  transform: scale(1.1) !important;
+}
+
+/* 分隔线 */
+.resize-handle {
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.resize-handle:hover {
+  background-color: rgba(26, 26, 26, 0.08);
+}
+
+.resize-handle.left-handle {
+  margin-left: -1px;
+}
+
+.resize-handle.right-handle {
+  margin-right: -1px;
+}
+
+/* 分隔线中心指示条 */
+.resize-handle-bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 60px;
+  background-color: transparent;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.resize-handle:hover .resize-handle-bar {
+  background-color: rgba(26, 26, 26, 0.3);
+  height: 80px;
+}
+
+.resize-handle:active .resize-handle-bar {
+  background-color: #1a1a1a;
+  height: 100px;
+}
+
+/* 拖动时的样式 */
+.resizable-layout.dragging .resize-handle-bar {
+  background-color: #1a1a1a;
+  height: 100%;
+}
+
+/* 防止面板内容在拖动时被选中 */
+.resizable-layout.dragging * {
+  user-select: none !important;
+  pointer-events: none;
+}
+
+.resizable-layout.dragging .resize-handle {
+  pointer-events: auto;
+}
+
+/* 移动端适配 */
+@media (max-width: 1024px) {
+  .resizable-layout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .resizable-panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto; /* 移除最小高度，让内容自然撑开 */
+    border-right: none !important;
+    border-left: none !important;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .resizable-panel.center-panel {
+    flex: none;
+    margin: 0 !important;
+  }
+
+  .resize-handle {
+    display: none;
+  }
+  
+  /* 手机端隐藏最大化按钮，因为已经是全宽了 */
+  .panel-maximize-btn,
+  .panel-embedded-maximize-btn {
+    display: none !important;
+  }
+}
