@@ -47,13 +47,25 @@ You can test the connection for each model. The same page shows which features w
 
 ## Screenshots
 
-| Knowledge network | Writing studio |
-|---|---|
-| ![Knowledge network](frontend/public/landing/feature-3.png) | ![Writing studio](frontend/public/landing/feature-3.5.png) |
-| **Quiz** | **Flashcards** |
-| ![Quiz](frontend/public/landing/feature-4.1.png) | ![Flashcards](frontend/public/landing/feature-4.2.png) |
-| **Paper to slides** | **Academic poster** |
-| ![Paper to slides](frontend/public/landing/feature-7.2.png) | ![Academic poster](frontend/public/landing/feature-6.1.png) |
+**Knowledge network.** Terms from all your documents in one graph.
+
+![Knowledge network](docs/screenshots/knowledge-network.png)
+
+**Writing studio.** Select a passage, let the AI revise it, and keep or drop each change.
+
+![Writing studio](docs/screenshots/writing-studio.png)
+
+**Quiz and flashcards**
+
+![Quiz and flashcards](docs/screenshots/study-tools.png)
+
+**Mind map**
+
+![Mind map](docs/screenshots/mindmap.png)
+
+**Academic poster.** Needs an image-generation key and an optional package.
+
+![Academic poster](docs/screenshots/poster.png)
 
 ## Optional packages
 

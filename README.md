@@ -47,13 +47,25 @@ python run.py
 
 ## 截图
 
-| 知识网络 | 创作空间 |
-|---|---|
-| ![知识网络](frontend/public/landing/feature-3.png) | ![创作空间](frontend/public/landing/feature-3.5.png) |
-| **测验** | **闪卡** |
-| ![测验](frontend/public/landing/feature-4.1.png) | ![闪卡](frontend/public/landing/feature-4.2.png) |
-| **论文转 PPT** | **学术海报** |
-| ![论文转 PPT](frontend/public/landing/feature-7.2.png) | ![学术海报](frontend/public/landing/feature-6.1.png) |
+**知识网络**：所有文档里的术语连成一张图。
+
+![知识网络](docs/screenshots/knowledge-network.png)
+
+**创作空间**：选中段落让 AI 修改，逐段决定采纳还是放弃。
+
+![创作空间](docs/screenshots/writing-studio.png)
+
+**测验与闪卡**
+
+![测验与闪卡](docs/screenshots/study-tools.png)
+
+**思维导图**
+
+![思维导图](docs/screenshots/mindmap.png)
+
+**学术海报**：需要图像生成 Key 和可选依赖。
+
+![学术海报](docs/screenshots/poster.png)
 
 ## 可选依赖
 
